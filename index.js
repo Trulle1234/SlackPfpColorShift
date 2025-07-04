@@ -1,6 +1,5 @@
 const { WebClient, ErrorCode } = require('@slack/web-api');
 const { createCanvas, loadImage } = require('canvas');
-const { SLACK_TOKEN } = require('./api_key.js');
 
 const INTERVAL_MS        = 1000;   
 const HALF_DAY_S         = 12 * 3600;
@@ -24,7 +23,7 @@ let canvas, ctx, img, lastHue;
   setInterval(tick, INTERVAL_MS);
 })();
 
-const slack = new WebClient(SLACK_TOKEN);
+const slack = new WebClient(process.env.SLACK_TOKEN);
 
 async function tick() {
   const now  = new Date();
